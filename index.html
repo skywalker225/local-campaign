@@ -1,5 +1,5 @@
-<html>
-  
+<html>  
+
   <script async src="https://campaigns-app.zercoms.com/js/v1/campaign/"></script>
   <script>
     window.addEventListener('load', function () {
@@ -11,20 +11,20 @@
             url: window.location.href
         });
     });
-</script>
+  </script>
   
   <button id="submitBtn">Submit Order</button>
 
   <label for="orderRefId">Order Ref ID:</label>
-<input type="text" id="orderRefId" placeholder="Enter order_ref_id">
-<button id="submitUpsellBtn">Submit Upsell</button>
+  <input type="text" id="orderRefId" placeholder="Enter order_ref_id">
+  <button id="submitUpsellBtn">Submit Upsell</button>
 
-  <button id="createCaret">Create Cart</button>
+  <button id="createCart">Create Cart</button>
 
 
   <!-- Cart Create -->
   <script>
-  document.getElementById('createCaret').addEventListener('click', function () {
+  document.getElementById('createCart').addEventListener('click', function () {
     const payload = {
    "user": {
        "email": "monchaya+campaign@29next.com",
@@ -41,30 +41,8 @@
             "package_id": 2,
             "quantity": 2
         }
-    ],
+    ]
     // "vouchers": ["SUMMER"],
-//     "attribution": {
-//         "funnel": "M funnel",
-//         "utm_source": "PA utm_source",
-//         "utm_medium": "PA utm_medium",
-//         "utm_campaign": "PA utm_campaign",
-//         "utm_term": "PA utm_term",
-//         "utm_content": "PA utm_content",
-//         "gclid": "PA gclid",
-//         "metadata": {
-//         "attribution_meta_decimal": "0.01",
-//         "attribution_meta_integer": "1000",
-//         "attribution_meta_text": "Han"
-//         },
-//         "affiliate": "PA affiliate",
-//         "subaffiliate1": "PA subaffiliate1",
-//         "subaffiliate2": "PA subaffiliate2",
-//         "subaffiliate3": "PA subaffiliate3",
-//         "subaffiliate4": "PA subaffiliate4",
-//         "subaffiliate5": "PA subaffiliate5",
-//         "agent": 1
-//     }
-// };
     fetch('https://campaigns-app.zercoms.com/api/v1/carts/', {
       method: 'POST',
       headers: {
