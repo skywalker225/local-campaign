@@ -15,105 +15,9 @@
   
   <button id="submitBtn">Submit Order</button>
 
-  <label for="orderRefId">Order Ref ID:</label>
-  <input type="text" id="orderRefId" placeholder="Enter order_ref_id">
-  <button id="submitUpsellBtn">Submit Upsell</button>
-
-  <button id="createCart">Create Cart</button>
-
-
-  <!-- Cart Create -->
+  
+  <!-- Order Create -->
   <script>
-  document.getElementById('createCart').addEventListener('click', function () {
-    const payload = {
-   "user": {
-       "email": "monchaya+campaign@29next.com",
-       "first_name": "Mon",
-       "last_name": "Campaigns",
-       "phone_number": "+17173673715"
-    },
-    "lines": [
-        {
-            "package_id": 7,
-            "quantity": 1
-        }
-        // ,{
-        //     "package_id": 2,
-        //     "quantity": 2
-        // }
-    ]
-    // "vouchers": ["SUMMER"],
-    fetch('https://campaigns-app.zercoms.com/api/v1/carts/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': '6EBHp2lVNMNHE1Ha2X9lR6LweibO0fr5O9HrM5LK' // Replace with your actual token
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('HTTP error ' + response.status);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Success:', data);
-      alert('Order submitted!');
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Failed to submit order.');
-    });
-  });
-</script>
-
-  <!-- Upsell  -->
-  <script>
-  document.getElementById('submitUpsellBtn').addEventListener('click', function () {
-    const orderRefId = document.getElementById('orderRefId').value.trim();
-
-    if (!orderRefId) {
-      alert('Please enter a valid order_ref_id.');
-      return;
-    }
-
-    const url = `https://campaigns-app.zercoms.com/api/v1/orders/${encodeURIComponent(orderRefId)}/upsells/`;
-
-    const payload = {
-      lines: [
-        { package_id: 2 }
-        ,{ package_id: 6 }
-      ]
-    };
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': '6EBHp2lVNMNHE1Ha2X9lR6LweibO0fr5O9HrM5LK' // Replace with your real token
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Upsell success:', data);
-      alert('Upsell submitted!');
-    })
-    .catch(error => {
-      console.error('Upsell error:', error);
-      alert('Failed to submit upsell.');
-    });
-  });
-</script>
-
-<!-- Order Create -->
-<script>
   document.getElementById('submitBtn').addEventListener('click', function () {
     const payload = {
       //lines: [{ package_id: 1, quantity: 3 }],
@@ -136,30 +40,7 @@
         first_name: "Mon",
         last_name: "Campaigns",
         phone_number: "+15732020210"
-        // ip: "0.0.0.0"
       },
-
-      // attribution: {
-      //   funnel: "M funnel",
-      //   utm_source: "PA utm_source",
-      //   utm_medium: "PA utm_medium",
-      //   utm_campaign: "PA utm_campaign",
-      //   utm_term: "PA utm_term",
-      //   utm_content: "PA utm_content",
-      //   gclid: "PA gclid",
-      //   metadata: {
-      //     attribution_meta_decimal: "0.01",
-      //     attribution_meta_integer: "1000",
-      //     attribution_meta_text: "Han"
-      //   },
-      //   affiliate: "PA affiliate",
-      //   subaffiliate1: "PA subaffiliate1",
-      //   subaffiliate2: "PA subaffiliate2",
-      //   subaffiliate3: "PA subaffiliate3",
-      //   subaffiliate4: "PA subaffiliate4",
-      //   subaffiliate5: "PA subaffiliate5",
-      //   agent: 1
-      // },
       payment_detail: {
         // payment_method: "paypal"
         payment_method: "card_token",
