@@ -94,4 +94,57 @@
     });
   });
 </script>
+
+
+  <!-- Upsell  -->
+  <script>
+  document.getElementById('submitUpsellBtn').addEventListener('click', function () {
+    const orderRefId = document.getElementById('orderRefId').value.trim();
+
+    if (!orderRefId) {
+      alert('Please enter a valid order_ref_id.');
+      return;
+    }
+
+    const url = `https://campaigns-app.zercoms.com/api/v1/orders/${encodeURIComponent(orderRefId)}/upsells/`;
+
+    const payload = {
+      "lines": [
+          {
+              "package_id": 2,
+              "quantity": 1
+          }
+          ,{
+              "package_id": 18,
+              "quantity": 1
+              // ,"is_upsell": true
+          }
+      ]
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': '6EBHp2lVNMNHE1Ha2X9lR6LweibO0fr5O9HrM5LK' // Replace with your real token
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Upsell success:', data);
+      alert('Upsell submitted!');
+    })
+    .catch(error => {
+      console.error('Upsell error:', error);
+      alert('Failed to submit upsell.');
+    });
+  });
+</script>
+  
 </html>
